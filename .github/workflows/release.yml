@@ -58,7 +58,7 @@ jobs:
 
     - name: make and make build-release
       run: |
-        cargo install --force cargo-make
+        cargo install --force cargo-make --target=${{ matrix.target }}
         cargo make build-release
         find . 
 
