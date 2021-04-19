@@ -85,18 +85,18 @@ jobs:
         asset_name: ${{ matrix.client_release_name }}
         tag: ${{ github.ref }}
 
-  deb-build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Deb Build
-        uses: ebbflow-io/cargo-deb-amd64-ubuntu@1.0
+  # deb-build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@master
+  #     - name: Deb Build
+  #       uses: ebbflow-io/cargo-deb-amd64-ubuntu@1.0
 
-      - name: Upload deb to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: target/x86_64-unknown-linux-musl/debian/zellij*
-          asset_name: zellij-amd64.deb
-          tag: ${{ github.ref }}
-          file_glob: true
+  #     - name: Upload deb to release
+  #       uses: svenstaro/upload-release-action@v2
+  #       with:
+  #         repo_token: ${{ secrets.GITHUB_TOKEN }}
+  #         file: target/x86_64-unknown-linux-musl/debian/zellij*
+  #         asset_name: zellij-amd64.deb
+  #         tag: ${{ github.ref }}
+  #         file_glob: true
