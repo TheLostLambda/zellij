@@ -60,7 +60,7 @@ jobs:
       run: |
         cargo install --force cargo-make
         cargo make build-release
-        find . -type d -print
+        find . 
 
 
     - name: Compress client
