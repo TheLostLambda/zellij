@@ -47,6 +47,8 @@ jobs:
 
       - name: Test II
         run: cross build
+        env:
+          HOSTNAME: localhost
 
       - name: Add WASM target
         run: rustup target add wasm32-wasi
