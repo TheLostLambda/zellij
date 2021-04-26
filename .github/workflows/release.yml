@@ -43,6 +43,12 @@ jobs:
           override: true
           target: ${{ matrix.target }}
 
+      - name: Test
+        run: cargo install cross
+
+      - name: Test II
+        run: cross build
+
       - name: Add WASM target
         run: rustup target add wasm32-wasi
 
@@ -55,7 +61,7 @@ jobs:
       - name: Build release binary
         run: cargo make ci-build-release ${{ matrix.target }}
         env:
-          HOSTNAME: ${{ env.HOSTNAME }} # Needed by `cargo cross`
+          HOSTNAME: localhost # Needed by `cargo cross`
 
       - name: Strip release binary
         run: strip "target/${{ matrix.target }}/release/zellij"
