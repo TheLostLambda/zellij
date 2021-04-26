@@ -11,7 +11,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       RUST_BACKTRACE: 1
-      CROSS_DOCKER_IN_DOCKER: true
     strategy:
       matrix:
         build:
@@ -42,20 +41,6 @@ jobs:
           override: true
           target: ${{ matrix.target }}
 
-      - name: Pretest
-        run: echo $HOSTNAME
-
-      - name: prepretest
-        run: echo ${{ env.HOSTNAME }}
-
-      - name: Test
-        run: cargo install cross
-
-      - name: Test II
-        run: cross build
-        env:
-          HOSTNAME: localhost
-
       - name: Add WASM target
         run: rustup target add wasm32-wasi
 
@@ -67,8 +52,6 @@ jobs:
 
       - name: Build release binary
         run: cargo make ci-build-release ${{ matrix.target }}
-        env:
-          HOSTNAME: localhost # Needed by `cargo cross`
 
       - name: Strip release binary
         run: strip "target/${{ matrix.target }}/release/zellij"
@@ -90,6 +73,7 @@ jobs:
           asset_path: ./target/${{ matrix.target }}/release/${{ steps.make-artifact.outputs.name }}
           asset_name: zellij-v${{ github.event.release.tag_name }}-${{matrix.target}}.tar.gz
           asset_content_type: application/octet-stream
+          
   create-release:
     runs-on: ubuntu-latest
     outputs: 
