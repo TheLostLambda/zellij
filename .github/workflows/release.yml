@@ -54,6 +54,8 @@ jobs:
 
       - name: Build release binary
         run: cargo make ci-build-release ${{ matrix.target }}
+        env:
+          HOSTNAME: phantom # Needed by `cargo cross`
 
       - name: Strip release binary
         run: strip "target/${{ matrix.target }}/release/zellij"
