@@ -148,30 +148,30 @@ args = ["tag", "v${CARGO_MAKE_CRATE_VERSION}"]
 
 [tasks.publish-zellij-tile]
 cwd = "zellij-tile"
-script = "cargo publish && sleep 15"
+script = "cargo publish --dry-run && sleep 15"
 
 [tasks.publish-zellij-client]
 dependencies = ["publish-zellij-utils"]
 cwd = "zellij-client"
-script = "cargo publish && sleep 15"
+script = "cargo publish --dry-run && sleep 15"
 
 [tasks.publish-zellij-server]
 dependencies = ["publish-zellij-utils"]
 cwd = "zellij-server"
-script = "cargo publish && sleep 15"
+script = "cargo publish --dry-run && sleep 15"
 
 [tasks.publish-zellij-utils]
 dependencies = ["publish-zellij-tile"]
 cwd = "zellij-utils"
-script = "cargo publish && sleep 15"
+script = "cargo publish --dry-run && sleep 15"
 
 [tasks.publish-zellij-tile-utils]
 cwd = "zellij-tile-utils"
-script = "cargo publish && sleep 15"
+script = "cargo publish --dry-run && sleep 15"
 
 [tasks.publish-zellij]
 dependencies = ["publish-zellij-client", "publish-zellij-server", "publish-zellij-utils"]
 command = "cargo"
-args = ["publish"]
+args = ["publish", "--dry-run"]
 
 
