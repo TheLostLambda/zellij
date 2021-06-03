@@ -82,7 +82,7 @@ end
 '''
 
 [tasks.build-plugins-release]
-env = { "CARGO_MAKE_WORKSPACE_SKIP_MEMBERS" = ["."] }
+env = { "CARGO_MAKE_WORKSPACE_INCLUDE_MEMBERS" = ["default-plugins/status-bar", "default-plugins/strider", "default-plugins/tab-bar"] }
 run_task = { name = "build-release", fork = true }
 
 [tasks.wasm-opt-plugins]
